@@ -1,0 +1,10 @@
+[ansible]
+
+[sn-infra]
+jenkins
+
+[azure_infra:children]
+sn-infra
+
+[windows]
+jenkins

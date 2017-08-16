@@ -1,0 +1,122 @@
+- hosts: azure_infra
+  connection: local
+  vars:
+   location: westeurope
+
+  tasks:
+   - name: Create a ressource groupe sn-infra
+     azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ location }}"
+
+   - name: Create a security group
+     azure_rm_securitygroup:
+      resource_group: "{{ resource_group }}"
+      name: remoteConnection
+      purge_rules: yes
+      rules:
+       - name: 'AllowSSH'
+         protocol: Tcp
+         destination_port_range: 22
+         access: Allow
+         priority: 101
+         direction: Inbound
+
+       - name: 'AllowRDP'
+         protocol: Tcp
+         destination_port_range: 3389
+         access: Allow
+         priority: 102
+         direction: Inbound
+
+       - name: 'HTTP'
+         protocol: Tcp
+         destination_port_range: 80
+         access: Allow
+         priority: 103
+         direction: Inbound
+
+       - name: 'HTTPS'
+         protocol: Tcp
+         destination_port_range: 443
+         access: Allow
+         priority: 104
+         direction: Inbound
+
+       - name: 'HTTP-8080'
+         protocol: Tcp
+         destination_port_range: 8080
+         access: Allow
+         priority: 105
+         direction: Inbound
+
+       - name: 'HTTP-Winrm'
+         protocol: Tcp
+         destination_port_range: 5985
+         access: Allow
+         priority: 106
+         direction: Inbound
+
+       - name: 'HTTPS-Winrm'
+         protocol: Tcp
+         destination_port_range: 5986
+         access: Allow
+         priority: 107
+         direction: Inbound
+
+   - name: Create Storage Account
+     azure_rm_storageaccount:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}data2"
+      type: Standard_LRS
+
+   - name: Create a virtual network
+     azure_rm_virtualnetwork:
+      name: "{{ resource_group }}-net"
+      resource_group: "{{ resource_group }}"
+      address_prefixes_cidr:
+       - '10.1.0.0/16'
+      dns_servers:
+       - "8.8.8.8"
+       - "4.4.4.4"
+
+   - name: Create a subnet
+     azure_rm_subnet:
+      name: services
+      virtual_network_name: "{{ resource_group }}-net"
+      resource_group: "{{ resource_group }}"
+      address_prefix_cidr: "10.1.0.0/24"
+      security_group_name: remoteConnection
+
+   - name: Create a public ip address
+     azure_rm_publicipaddress:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}-publicIp"
+      allocation_method: Static
+      domain_name: "{{ vm_name }}"
+      domain_name_label: "{{ vm_name }}sn"
+
+   - name: Create a network interface
+     azure_rm_networkinterface:
+      name: "{{ vm_name }}-eth0"
+      resource_group: "{{ resource_group }}"
+      virtual_network_name: "{{ resource_group }}-net"
+      subnet_name: services
+      security_group_name: remoteConnection
+      public_ip_address_name: "{{ vm_name }}-publicIp"
+      
+   - name: Create a vm
+     azure_rm_virtualmachine:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}"
+      admin_username: "{{ login }}"
+      admin_password: "{{ mdp }}"
+      vm_size: "{{ vm_size }}"
+      os_type: "{{ os_type }}"
+      storage_account: "{{ vm_name }}data2"
+      network_interface_names: "{{ vm_name }}-eth0"
+      image:
+       offer: "{{ offer }}"
+       publisher: "{{ publisher }}"
+       sku: "{{ sku }}"
+       version: latest

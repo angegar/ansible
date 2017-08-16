@@ -1,0 +1,7 @@
+resource_group: sn-infra
+os_type: Windows
+offer: WindowsServer
+publisher: MicrosoftWindowsServer
+sku: '2012-R2-Datacenter'
+vm_size: Standard_A1
+

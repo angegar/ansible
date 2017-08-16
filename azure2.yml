@@ -1,0 +1,27 @@
+- hosts: azure_infra
+  connection: local
+  gather_facts: no
+  vars:
+   location: westeurope
+
+  tasks:
+   - name: Create a ressource groupe sn-infra
+     azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ location }}"
+
+   - name: Create Azure Deploy
+     azure_rm_deployment:
+      state: present
+      resource_group_name: "{{ resource_group }}"
+      location: "{{ location }}"
+      template_link: 'https://raw.github.houston.entsvcs.net/laurent-gil/azure-sn-infra/master/azure-templates/windows_server.json'
+      parameters:
+        serverName: 
+          value : "{{ vm_name }}"
+        login: 
+          value: "{{ login }}"
+        password: 
+          value: "{{ mdp }}"
+     register: jenkins
+#      parameters_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.parameters.json'
