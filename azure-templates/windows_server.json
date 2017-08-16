@@ -4,6 +4,12 @@
     "parameters": {
         "serverName": {
             "type": "String"
+        },
+        "login": {
+            "type": "String"
+        },
+        "password": {
+            "type": "String"
         }
     },
     "variables": {
@@ -91,7 +97,8 @@
                 },
                 "osProfile": {
                     "computerName": "[parameters('serverName')]",
-                    "adminUsername": "[parameters('serverName')]",
+                    "adminUsername": "[parameters('login')]",
+                    "adminPassword": "[parameters('password')]",
                     "windowsConfiguration": {
                         "provisionVMAgent": true,
                         "enableAutomaticUpdates": true
@@ -339,229 +346,4 @@
                         }
                     },
                     {
-                        "name": "DenyAllOutBound",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "description": "Deny all outbound traffic",
-                            "protocol": "*",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "*",
-                            "sourceAddressPrefix": "*",
-                            "destinationAddressPrefix": "*",
-                            "access": "Deny",
-                            "priority": 65500,
-                            "direction": "Outbound",
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    }
-                ]
-            },
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[variables('public_ip_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "603db5f0-dd4b-461d-94cd-281fa37ee572",
-                "publicIPAddressVersion": "IPv4",
-                "publicIPAllocationMethod": "Dynamic",
-                "idleTimeoutInMinutes": 4
-            },
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.Network/virtualNetworks",
-            "name": "[variables('vnet_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "2775ed8a-057b-4f43-a09b-70a8bc84ba36",
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "10.0.0.0/24"
-                    ]
-                },
-                "subnets": [
-                    {
-                        "name": "default",
-                        "etag": "W/\"330542d9-358b-45b1-8410-9f99964369e7\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "addressPrefix": "10.0.0.0/24"
-                        }
-                    }
-                ],
-                "virtualNetworkPeerings": []
-            },
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
-            },
-            "kind": "Storage",
-            "name": "[variables('storage_name')]",
-            "apiVersion": "2016-01-01",
-            "location": "westeurope",
-            "tags": {},
-            "scale": null,
-            "properties": {},
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "Allow RDP",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "protocol": "TCP",
-                "sourcePortRange": "*",
-                "destinationPortRange": "3389",
-                "sourceAddressPrefix": "*",
-                "destinationAddressPrefix": "*",
-                "access": "Allow",
-                "priority": 1000,
-                "direction": "Inbound",
-                "sourceAddressPrefixes": [],
-                "destinationAddressPrefixes": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
-            ]
-        },
-        {
-            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "Allow HTTP",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "protocol": "TCP",
-                "sourcePortRange": "*",
-                "destinationPortRange": "80",
-                "sourceAddressPrefix": "*",
-                "destinationAddressPrefix": "*",
-                "access": "Allow",
-                "priority": 1010,
-                "direction": "Inbound",
-                "sourceAddressPrefixes": [],
-                "destinationAddressPrefixes": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
-            ]
-        },
-        {
-            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "Allow HTTPS",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "protocol": "TCP",
-                "sourcePortRange": "*",
-                "destinationPortRange": "443",
-                "sourceAddressPrefix": "*",
-                "destinationAddressPrefix": "*",
-                "access": "Allow",
-                "priority": 1020,
-                "direction": "Inbound",
-                "sourceAddressPrefixes": [],
-                "destinationAddressPrefixes": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
-            ]
-        },
-        {
-            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "Allow HTTP on 8080",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "protocol": "*",
-                "sourcePortRange": "*",
-                "destinationPortRange": "8080",
-                "sourceAddressPrefix": "*",
-                "destinationAddressPrefix": "*",
-                "access": "Allow",
-                "priority": 1030,
-                "direction": "Inbound",
-                "sourceAddressPrefixes": [],
-                "destinationAddressPrefixes": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
-            ]
-        },
-        {
-            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "Allow Winrm over 5985",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "protocol": "TCP",
-                "sourcePortRange": "*",
-                "destinationPortRange": "5985",
-                "sourceAddressPrefix": "*",
-                "destinationAddressPrefix": "*",
-                "access": "Allow",
-                "priority": 1040,
-                "direction": "Inbound",
-                "sourceAddressPrefixes": [],
-                "destinationAddressPrefixes": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
-            ]
-        },
-        {
-            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "Allow Winrm over 5986",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "protocol": "TCP",
-                "sourcePortRange": "*",
-                "destinationPortRange": "5986",
-                "sourceAddressPrefix": "*",
-                "destinationAddressPrefix": "*",
-                "access": "Allow",
-                "priority": 1050,
-                "direction": "Inbound",
-                "sourceAddressPrefixes": [],
-                "destinationAddressPrefixes": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
-            ]
-        },
-        {
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[variables('subnet_name')]",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "addressPrefix": "10.0.0.0/24"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', variables('vnet_name'))]"
-            ]
-        }
-    ]
-}
+           
