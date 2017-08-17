@@ -80,7 +80,7 @@
                         "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
-                            "id": "[resourceId('Microsoft.Compute/disks', variables('os_disk_name'))]"
+                            "id": "[resourceId('Microsoft.Compute/disks'), variables('os_disk_name'))]"
                         }
                     },
                     "dataDisks": [
@@ -90,7 +90,7 @@
                             "createOption": "Attach",
                             "caching": "ReadWrite",
                             "managedDisk": {
-                                "id": "[resourceId('Microsoft.Compute/disks', variables('data_disk_name'))]"
+                                "id": "[resourceId('Microsoft.Compute/disks'), variables('data_disk_name'))]"
                             }
                         }
                     ]
