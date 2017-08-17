@@ -461,7 +461,7 @@
         },       
         {
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[variables('subnet_name')]",
+            "name": "[concat(variables('vnet_name') ,'/',variables('subnet_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
