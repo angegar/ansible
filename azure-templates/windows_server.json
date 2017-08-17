@@ -48,10 +48,7 @@
                 "accountType": "Standard_LRS",
                 "osType": "Windows",
                 "creationData": {
-                    "createOption": "FromImage",
-                    "imageReference": {
-                        "id": "/Subscriptions/4960920d-457a-42e0-aad5-31b72cf34c9e/Providers/Microsoft.Compute/Locations/westeurope/Publishers/MicrosoftWindowsServer/ArtifactTypes/VMImage/Offers/WindowsServer/Skus/2016-Datacenter/Versions/latest"
-                    }
+                    "createOption": "Empty"
                 },
                 "diskSizeGB": 127
             },
