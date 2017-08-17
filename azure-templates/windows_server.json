@@ -13,14 +13,14 @@
         }
     },
     "variables": {
-        "data_disk_name ": "[concat('data_disk_',parameters('serverName')]",
-        "os_disk_name": "[concat('os_disk_',parameters('serverName')]",
-        "nic_name": "[concat('nic_',parameters('serverName')]",
-        "network_security_group": "[concat('net_sec_grp_',parameters('serverName')]",
-        "public_ip_name": "[concat('public_ip_',parameters('serverName')]",
-        "vnet_name": "[concat('vnet_',parameters('serverName')]",
-        "subnet_name": "[concat('subnet_',parameters('serverName')]",
-        "storage_name": "[concat('storage_account_',parameters('serverName')]"
+        "data_disk_name ": "[concat('data_disk_',parameters('serverName'))]",
+        "os_disk_name": "[concat('os_disk_',parameters('serverName'))]",
+        "nic_name": "[concat('nic_',parameters('serverName'))]",
+        "network_security_group": "[concat('net_sec_grp_',parameters('serverName'))]",
+        "public_ip_name": "[concat('public_ip_',parameters('serverName'))]",
+        "vnet_name": "[concat('vnet_',parameters('serverName'))]",
+        "subnet_name": "[concat('subnet_',parameters('serverName'))]",
+        "storage_name": "[concat('storage_account_',parameters('serverName'))]"
     },
     "resources": [
         {
@@ -346,4 +346,4 @@
                         }
                     },
                     {
-           
+   
