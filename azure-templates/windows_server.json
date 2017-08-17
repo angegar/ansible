@@ -147,7 +147,7 @@
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('public_ip_name'))]"
                             },
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('subnet_name'))]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnet_name'), variables('subnet_name'))]"
                             },
                             "primary": true,
                             "privateIPAddressVersion": "IPv4"
@@ -170,7 +170,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('public_ip_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('subnet_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('vnet_name'), variables('subnet_name'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]",
                 "[resourceId('Microsoft.Compute/virtualMachines', parameters('serverName'))]"
             ]
