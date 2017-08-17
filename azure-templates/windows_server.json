@@ -74,7 +74,7 @@
                     "osDisk": {
                         "osType": "Windows",
                         "name": "[variables('os_disk_name')]",
-                        "createOption": "FromImage",
+                        "createOption": "Empty",
                         "caching": "ReadWrite",
                         "managedDisk": {
                             "id": "[resourceId('Microsoft.Compute/disks', variables('os_disk_name'))]"
