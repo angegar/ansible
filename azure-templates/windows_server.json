@@ -108,7 +108,7 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nic_name'))]"
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces'), variables('nic_name'))]"
                         }
                     ]
                 },
