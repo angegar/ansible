@@ -26,14 +26,13 @@
         "public_ip_name": "[concat('public_ip_',parameters('serverName'))]",
         "vnet_name": "[concat('vnet_',parameters('serverName'))]",
         "subnet_name": "[concat('subnet_',parameters('serverName'))]",
-        "storage_name": "[concat('storageaccount',parameters('serverName'))]",      
-        "apiVersion" : "2017-03-30"
+        "storage_name": "[concat('storageaccount',parameters('serverName'))]"
     },
     "resources": [
         {
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('serverName')]",
-            "apiVersion": "[variables('apiVersion')]",
+            "apiVersion": "2017-03-30",
             "location": "[parameters('location')]",
             "scale": null,
             "properties": {
@@ -93,7 +92,7 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nic_name')]",
-            "apiVersion": "[variables('apiVersion')]",
+            "apiVersion": "2017-03-01",
             "location": "[parameters('location')]",
             "scale": null,
             "properties": {
