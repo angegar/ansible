@@ -48,7 +48,7 @@
                 "accountType": "Standard_LRS",
                 "osType": "Windows",
                 "creationData": {
-                    "createOption": "FromImage"
+                    "createOption": "Empty"
                 },
                 "diskSizeGB": 127
             },
