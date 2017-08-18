@@ -168,8 +168,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('public_ip_name'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets',variables('vnet_name'), variables('subnet_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"//,
-                //"[resourceId('Microsoft.Compute/virtualMachines', parameters('serverName'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
             ]
         },
         {
