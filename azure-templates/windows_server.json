@@ -426,20 +426,23 @@
                         "10.0.0.0/24"
                     ]
                 },
-                "subnets": [
-                    {
-                        "name": "default",
-                        "etag": "W/\"330542d9-358b-45b1-8410-9f99964369e7\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "addressPrefix": "10.0.0.0/24"
-                        }
-                    }
-                ],
                 "virtualNetworkPeerings": []
             },
             "dependsOn": []
         },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(variables('vnet_name') ,'/',variables('subnet_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.0.0/24"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('vnet_name'))]"
+            ]
+        }
         {
             "type": "Microsoft.Storage/storageAccounts",
             "sku": {
@@ -454,19 +457,6 @@
             "scale": null,
             "properties": {},
             "dependsOn": []
-        },       
-        {
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(variables('vnet_name') ,'/',variables('subnet_name'))]",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "addressPrefix": "10.0.0.0/24"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', variables('vnet_name'))]"
-            ]
-        }
+        } 
     ]
 }
