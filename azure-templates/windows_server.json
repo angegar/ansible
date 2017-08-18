@@ -32,25 +32,9 @@
             "properties": {
                 "accountType": "Standard_LRS",
                 "creationData": {
-                    "createOption": "Attach"
+                    "createOption": "Empty"
                 },
                 "diskSizeGB": 100
-            },
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.Compute/disks",
-            "name": "[variables('os_disk_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "osType": "Windows",
-                "creationData": {
-                    "createOption": "FromImage"              
-                },
-                "diskSizeGB": 127
             },
             "dependsOn": []
         },
@@ -71,16 +55,18 @@
                         "sku": "2016-Datacenter",
                         "version": "latest"
                     },
-                    "osDisk": {                     
+                    "osDisk": {
                         "name": "[variables('os_disk_name')]",
+                        "osType":"Windows",
+                        "diskSizeGB":127,
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
                     },
                     "dataDisks": [
-                        {                           
+                        {
                             "name": "[variables('data_disk_name')]",
                             "caching": "ReadWrite",
-                            "createOption": "Attach"
+                            "createOption": "Empty"
                         }
                     ]
                 },
@@ -449,6 +435,6 @@
             "scale": null,
             "properties": {},
             "dependsOn": []
-        } 
+        }
     ]
 }
