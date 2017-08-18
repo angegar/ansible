@@ -92,7 +92,7 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nic_name')]",
-            "apiVersion": "2017-03-01",
+            "apiVersion": "2017-06-01",
             "location": "[parameters('location')]",
             "scale": null,
             "properties": {
