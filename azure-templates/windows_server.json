@@ -39,6 +39,23 @@
             "dependsOn": []
         },
         {
+            "type": "Microsoft.Compute/disks",
+            "name": "[variables('os_disk_name')]",
+            "apiVersion": "2016-04-30-preview",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {
+                "accountType": "Standard_LRS",
+                "osType": "Windows",
+                "creationData": {
+                    "createOption": "FromImage",
+                    "imageReference":
+                },
+                "diskSizeGB": 127
+            },
+            "dependsOn": []
+        },
+        {
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('serverName')]",
             "apiVersion": "2016-04-30-preview",
@@ -57,16 +74,20 @@
                     },
                     "osDisk": {
                         "name": "[variables('os_disk_name')]",
-                        "osType":"Windows",
-                        "diskSizeGB":127,
                         "caching": "ReadWrite",
-                        "createOption": "FromImage"
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('os_disk_name').vhd]"
+                        }
                     },
                     "dataDisks": [
                         {
                             "name": "[variables('data_disk_name')]",
                             "caching": "ReadWrite",
-                            "createOption": "Empty"
+                            "createOption": "Empty",
+                            "vhd": {
+                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('data_disk_name').vhd]"
+                        }
                         }
                     ]
                 },
