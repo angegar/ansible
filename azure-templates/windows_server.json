@@ -29,10 +29,12 @@
             "apiVersion": "2016-04-30-preview",
             "location": "westeurope",
             "scale": null,
+            "lun": 0,
             "properties": {
                 "accountType": "Standard_LRS",
                 "creationData": {
-                    "createOption": "Empty"
+                    "createOption": "Attach",
+                    "caching": "ReadWrite"
                 },
                 "diskSizeGB": 100
             },
@@ -48,7 +50,8 @@
                 "accountType": "Standard_LRS",
                 "osType": "Windows",
                 "creationData": {
-                    "createOption": "Empty"
+                    "createOption": "FromImage",
+                    "caching": "ReadWrite"
                 },
                 "diskSizeGB": 127
             },
@@ -71,24 +74,14 @@
                         "sku": "2016-Datacenter",
                         "version": "latest"
                     },
-                    "osDisk": {
-                        "osType": "Windows",
+                    "osDisk": {                     
                         "name": "[variables('os_disk_name')]",
-                        "createOption": "FromImage",
-                        "caching": "ReadWrite",
-                        "managedDisk": {
-                            "id": "[resourceId('Microsoft.Compute/disks', variables('os_disk_name'))]"
-                        }
+                        "createOption": "FromImage"
                     },
                     "dataDisks": [
-                        {
-                            "lun": 0,
+                        {                           
                             "name": "[variables('data_disk_name')]",
-                            "createOption": "Attach",
-                            "caching": "ReadWrite",
-                            "managedDisk": {
-                                "id": "[resourceId('Microsoft.Compute/disks', variables('data_disk_name'))]"
-                            }
+                            "createOption": "Attach"
                         }
                     ]
                 },
