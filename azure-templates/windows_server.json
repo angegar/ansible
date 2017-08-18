@@ -79,8 +79,6 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/disks', variables('os_disk_name'))]",
-                "[resourceId('Microsoft.Compute/disks', variables('data_disk_name'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', variables('nic_name'))]",
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storage_name'))]"
             ]
@@ -420,11 +418,5 @@
             "properties": {},
             "dependsOn": []
         }
-    ],
-    "outputs": {
-        "referenceOutput": {
-            "type": "object",
-            "value" : "[reference(resourceId('Microsoft.Compute/disks', variables('os_disk_name')), '2017-06-01')"
-        }
-    }
+    ]
 }
