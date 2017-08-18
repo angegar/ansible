@@ -15,7 +15,8 @@
       state: present
       resource_group_name: "{{ resource_group }}"
       location: "{{ location }}"
-      template_link: 'https://raw.github.houston.entsvcs.net/laurent-gil/ansible/master/azure-templates/windows_server.json'
+      template_link: 'https://raw.githubusercontent.com/angegar/ansible/master/azure-templates/windows_server.json'
+      
       parameters:
         serverName: 
           value : "{{ vm_name }}"
