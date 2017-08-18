@@ -76,7 +76,7 @@
                         "caching": "ReadWrite",
                         "createOption": "FromImage",
                         "vhd": {
-                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('os_disk_name'),'.vhd')]"
+                            "uri": "[reference(resourceId('Microsoft.Compute/disks/',variables('os_disk_name'))).primaryEndpoints.blob]"
                         }
                     },
                     "dataDisks": [
@@ -86,8 +86,9 @@
                             "createOption": "Empty",
                             "lun" : 0,
                             "vhd": {
-                                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('data_disk_name'),'.vhd')]"
-                            }
+                                "uri": "[reference(resourceId('Microsoft.Compute/disks/',variables('data_disk_name'))).primaryEndpoints.blob]"
+                            },
+                            "diskSizeGB":200
                         }
                     ]
                 },
@@ -457,5 +458,11 @@
             "properties": {},
             "dependsOn": []
         }
-    ]
+    ],
+    "outputs": {
+        "referenceOutput": {
+            "type": "object",
+            "value" : "[reference(resourceId('Microsoft.Compute/disks', variables('os_date_name')), '2017-06-01').primaryEndpoints['blob']]"
+        }
+    }
 }
