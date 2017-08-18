@@ -141,7 +141,7 @@
         {
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('network_security_group')]",
-            "apiVersion": "[variables('apiVersion')]",
+            "apiVersion": "2017-08-01",
             "location": "[parameters('location')]",
             "scale": null,
             "properties": {
@@ -367,7 +367,7 @@
         {
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('public_ip_name')]",
-            "apiVersion": "[variables('apiVersion')]",
+            "apiVersion": "2017-08-01",
             "location": "[parameters('location')]",
             "scale": null,
             "properties": {
@@ -382,7 +382,7 @@
         {
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[variables('vnet_name')]",
-            "apiVersion": "[variables('apiVersion')]",
+            "apiVersion": "2017-06-01",
             "location": "[parameters('location')]",
             "scale": null,
             "properties": {
@@ -418,7 +418,7 @@
             },
             "kind": "Storage",
             "name": "[variables('storage_name')]",
-            "apiVersion": "[variables('apiVersion')]",
+            "apiVersion": "2017-06-01",
             "location": "[parameters('location')]",
             "tags": {},
             "scale": null,
