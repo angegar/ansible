@@ -160,10 +160,10 @@
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
                 },
-                "primary": true,
-                "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('serverName'))]"
-                }
+                "primary": true
+                //"virtualMachine": {
+                //    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('serverName'))]"
+                //}
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('public_ip_name'))]",
