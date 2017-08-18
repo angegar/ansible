@@ -462,7 +462,7 @@
     "outputs": {
         "referenceOutput": {
             "type": "object",
-            "value" : "[reference(resourceId('Microsoft.Compute/disks', variables('os_date_name')), '2017-06-01').primaryEndpoints['blob']]"
+            "value" : "[reference(resourceId('Microsoft.Compute/disks', variables('os_disk_name')), '2017-06-01').primaryEndpoints['blob']]"
         }
     }
 }
