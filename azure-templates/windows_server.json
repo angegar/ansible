@@ -34,7 +34,7 @@
                 "creationData": {
                     "createOption": "Empty"
                 },
-                "diskSizeGB": 100
+                "diskSizeGB": 200
             },
             "dependsOn": []
         },
@@ -48,8 +48,7 @@
                 "accountType": "Standard_LRS",
                 "osType": "Windows",
                 "creationData": {
-                    "createOption": "FromImage",
-                    "imageReference":
+                    "createOption": "FromImage"
                 },
                 "diskSizeGB": 127
             },
