@@ -24,40 +24,9 @@
     },
     "resources": [
         {
-            "type": "Microsoft.Compute/disks",
-            "name": "[variables('data_disk_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "creationData": {
-                    "createOption": "Empty"
-                },
-                "diskSizeGB": 200
-            },
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.Compute/disks",
-            "name": "[variables('os_disk_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "osType": "Windows",
-                "creationData": {
-                    "createOption": "Empty"
-                },
-                "diskSizeGB": 127
-            },
-            "dependsOn": []
-        },
-        {
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('serverName')]",
-            "apiVersion": "2016-04-30-preview",
+            "apiVersion": "2017-03-30",
             "location": "westeurope",
             "scale": null,
             "properties": {
@@ -72,22 +41,15 @@
                         "version": "latest"
                     },
                     "osDisk": {
-                        "name": "[variables('os_disk_name')]",
-                        "caching": "ReadWrite",
-                        "createOption": "FromImage",
-                        "vhd": {
-                            "uri": "[reference(resourceId('Microsoft.Compute/disks/',variables('os_disk_name'))).primaryEndpoints.blob]"
-                        }
+                        "name":"[variables('os_disk_name')]",
+                        "osType": "Windows",
+                        "createOption": "FromImage"
                     },
                     "dataDisks": [
-                        {
-                            "name": "[variables('data_disk_name')]",
-                            "caching": "ReadWrite",
+                        {          
+                            "name":"[variables('data_disk_name')]",           
                             "createOption": "Empty",
                             "lun" : 0,
-                            "vhd": {
-                                "uri": "[reference(resourceId('Microsoft.Compute/disks/',variables('data_disk_name'))).primaryEndpoints.blob]"
-                            },
                             "diskSizeGB":200
                         }
                     ]
@@ -462,7 +424,7 @@
     "outputs": {
         "referenceOutput": {
             "type": "object",
-            "value" : "[reference(resourceId('Microsoft.Compute/disks', variables('os_disk_name')), '2017-06-01').primaryEndpoints['blob']]"
+            "value" : "[reference(resourceId('Microsoft.Compute/disks', variables('os_disk_name')), '2017-06-01')"
         }
     }
 }
