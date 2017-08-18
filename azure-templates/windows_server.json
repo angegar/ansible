@@ -32,8 +32,7 @@
             "properties": {
                 "accountType": "Standard_LRS",
                 "creationData": {
-                    "createOption": "Attach",
-                    "caching": "ReadWrite"
+                    "createOption": "Attach"
                 },
                 "diskSizeGB": 100
             },
@@ -49,8 +48,7 @@
                 "accountType": "Standard_LRS",
                 "osType": "Windows",
                 "creationData": {
-                    "createOption": "FromImage",
-                    "caching": "ReadWrite"
+                    "createOption": "FromImage"              
                 },
                 "diskSizeGB": 127
             },
@@ -75,11 +73,13 @@
                     },
                     "osDisk": {                     
                         "name": "[variables('os_disk_name')]",
+                        "caching": "ReadWrite",
                         "createOption": "FromImage"
                     },
                     "dataDisks": [
                         {                           
                             "name": "[variables('data_disk_name')]",
+                            "caching": "ReadWrite",
                             "createOption": "Attach"
                         }
                     ]
