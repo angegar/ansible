@@ -76,7 +76,7 @@
                         "caching": "ReadWrite",
                         "createOption": "FromImage",
                         "vhd": {
-                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('os_disk_name').vhd]"
+                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('os_disk_name').vhd)]"
                         }
                     },
                     "dataDisks": [
@@ -85,7 +85,7 @@
                             "caching": "ReadWrite",
                             "createOption": "Empty",
                             "vhd": {
-                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('data_disk_name').vhd]"
+                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('data_disk_name').vhd)]"
                         }
                         }
                     ]
