@@ -20,7 +20,7 @@
         "public_ip_name": "[concat('public_ip_',parameters('serverName'))]",
         "vnet_name": "[concat('vnet_',parameters('serverName'))]",
         "subnet_name": "[concat('subnet_',parameters('serverName'))]",
-        "storage_name": "[concat('storage_account_',parameters('serverName'))]"
+        "storage_name": "[concat('storageaccount',parameters('serverName'))]"
     },
     "resources": [
         {
@@ -423,7 +423,7 @@
                 "resourceGuid": "2775ed8a-057b-4f43-a09b-70a8bc84ba36",
                 "addressSpace": {
                     "addressPrefixes": [
-                        "10.0.0.0/24"
+                        "10.1.0.0/16"
                     ]
                 },
                 "virtualNetworkPeerings": []
@@ -437,12 +437,12 @@
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
-                "addressPrefix": "10.0.0.0/24"
+                "addressPrefix": "10.1.0.0/24"
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('vnet_name'))]"
             ]
-        }
+        },
         {
             "type": "Microsoft.Storage/storageAccounts",
             "sku": {
