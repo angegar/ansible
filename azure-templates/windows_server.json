@@ -10,6 +10,12 @@
         },
         "password": {
             "type": "string"
+        },
+        "location" : {
+            "type" :"string"
+        },
+        "dataDiskSize": {
+            "type" : "int"
         }
     },
     "variables": {
@@ -20,14 +26,15 @@
         "public_ip_name": "[concat('public_ip_',parameters('serverName'))]",
         "vnet_name": "[concat('vnet_',parameters('serverName'))]",
         "subnet_name": "[concat('subnet_',parameters('serverName'))]",
-        "storage_name": "[concat('storageaccount',parameters('serverName'))]"
+        "storage_name": "[concat('storageaccount',parameters('serverName'))]",      
+        "apiVersion" : "2017-03-30"
     },
     "resources": [
         {
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('serverName')]",
-            "apiVersion": "2017-03-30",
-            "location": "westeurope",
+            "apiVersion": "[variables('apiVersion')]",
+            "location": "[parameters('location')]",
             "scale": null,
             "properties": {
                 "hardwareProfile": {
@@ -37,7 +44,7 @@
                     "imageReference": {
                         "publisher": "MicrosoftWindowsServer",
                         "offer": "WindowsServer",
-                        "sku": "2016-Datacenter",
+                        "sku": "2012-R2-Datacenter",
                         "version": "latest"
                     },
                     "osDisk": {
@@ -50,7 +57,7 @@
                             "name":"[variables('data_disk_name')]",           
                             "createOption": "Empty",
                             "lun" : 0,
-                            "diskSizeGB":200
+                            "diskSizeGB":"[parameters('dataDiskSize')]"
                         }
                     ]
                 },
@@ -86,8 +93,8 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nic_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "westeurope",
+            "apiVersion": "[variables('apiVersion')]",
+            "location": "[parameters('location')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -134,8 +141,8 @@
         {
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('network_security_group')]",
-            "apiVersion": "2017-06-01",
-            "location": "westeurope",
+            "apiVersion": "[variables('apiVersion')]",
+            "location": "[parameters('location')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -360,8 +367,8 @@
         {
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('public_ip_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "westeurope",
+            "apiVersion": "[variables('apiVersion')]",
+            "location": "[parameters('location')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -375,8 +382,8 @@
         {
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[variables('vnet_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "westeurope",
+            "apiVersion": "[variables('apiVersion')]",
+            "location": "[parameters('location')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -393,7 +400,7 @@
         {
             "type": "Microsoft.Network/virtualNetworks/subnets",
             "name": "[concat(variables('vnet_name') ,'/',variables('subnet_name'))]",
-            "apiVersion": "2017-06-01",
+            "apiVersion": "[variables('apiVersion')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -411,8 +418,8 @@
             },
             "kind": "Storage",
             "name": "[variables('storage_name')]",
-            "apiVersion": "2016-01-01",
-            "location": "westeurope",
+            "apiVersion": "[variables('apiVersion')]",
+            "location": "[parameters('location')]",
             "tags": {},
             "scale": null,
             "properties": {},

@@ -23,5 +23,9 @@
           value: "{{ login }}"
         password: 
           value: "{{ mdp }}"
+        location:
+          value: "{{ location }}"
+        dataDiskSize:
+          value: "200"
      register: jenkins
 #      parameters_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.parameters.json'
