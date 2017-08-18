@@ -84,9 +84,10 @@
                             "name": "[variables('data_disk_name')]",
                             "caching": "ReadWrite",
                             "createOption": "Empty",
+                            "lun" : 0,
                             "vhd": {
-                            "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('data_disk_name'),'.vhd')]"
-                        }
+                                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storage_name'))).primaryEndpoints.blob, 'vhds/',variables('data_disk_name'),'.vhd')]"
+                            }
                         }
                     ]
                 },
@@ -110,7 +111,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "[concat('https', '://', variables('storage_name'), '.blob.core.windows.net', '/')]"
+                        "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts', variables('storage_name')), '2017-06-01').primaryEndpoints['blob']]"
                     }
                 }
             },
