@@ -382,7 +382,7 @@
         {
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[variables('vnet_name')]",
-            "apiVersion": "2017-08-01",
+            "apiVersion": "2017-03-01",
             "location": "[parameters('location')]",
             "scale": null,
             "properties": {
@@ -400,7 +400,7 @@
         {
             "type": "Microsoft.Network/virtualNetworks/subnets",
             "name": "[concat(variables('vnet_name') ,'/',variables('subnet_name'))]",
-            "apiVersion": "2017-08-01",
+            "apiVersion": "2017-03-01",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
