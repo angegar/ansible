@@ -160,7 +160,7 @@
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
                 },
-                "primary": true
+                "primary": true,
                 "virtualMachine": {
                     "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('serverName'))]"
                 }
