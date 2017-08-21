@@ -27,7 +27,7 @@
         "vnet_name": "[concat('vnet_',parameters('serverName'))]",
         "subnet_name": "[concat('subnet_',parameters('serverName'))]",
         "storage_name": "[concat('storageaccount',parameters('serverName'))]",
-        "fqdn": "[concat(parameters('serverName'),'.',resourceGroup().name,'.',resourceGroup().location,'.cloudapp.azure.com')]"
+        "fqdn": "['*','.',resourceGroup().location,'.cloudapp.azure.com')]"
     },
     "resources": [
         {
@@ -385,7 +385,7 @@
                 "publicIPAllocationMethod": "Dynamic",
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
-                    "domainNameLabel": "[resourceGroup().name]"
+                    "domainNameLabel": "[parameters('serverName')]"
                 }
             },
             "dependsOn": []
