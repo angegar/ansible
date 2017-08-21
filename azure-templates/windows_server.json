@@ -430,11 +430,11 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
-            "name": "[concat(variables('serverName'),'/WinRMCustomScriptExtension')]",
+            "name": "[concat(parameters('serverName'),'/WinRMCustomScriptExtension')]",
             "apiVersion": "[variables('apiVersion')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', variables('serverName'))]"
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('serverName'))]"
             ],
             "properties": {
                 "publisher": "Microsoft.Compute",
