@@ -375,10 +375,10 @@
                 "resourceGuid": "603db5f0-dd4b-461d-94cd-281fa37ee572",
                 "publicIPAddressVersion": "IPv4",
                 "publicIPAllocationMethod": "Dynamic",
-                "idleTimeoutInMinutes": 4
-            },
-            "dnsSettings": {
-                "fqdn": "[variables('afdn')]"
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "fqdn": "[variables('afdn')]"
+                }
             },
             "dependsOn": []
         },
