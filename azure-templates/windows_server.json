@@ -385,7 +385,8 @@
                 "publicIPAllocationMethod": "Dynamic",
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
-                    "fqdn": "[variables('fqdn')]"
+                    "fqdn": "[variables('fqdn')]",
+                    "domainNameLabel": "[resourceGroup().location]"
                 }
             },
             "dependsOn": []
