@@ -122,11 +122,9 @@
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
-                "resourceGuid": "92814752-acbc-4004-86b4-865207247986",
                 "ipConfigurations": [
                     {
                         "name": "ipconfig1",
-                        "etag": "W/\"a826cb12-cf7b-4e67-9046-3e540aa8b668\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "privateIPAddress": "10.0.0.4",
@@ -170,11 +168,9 @@
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
-                "resourceGuid": "4d6a2adf-1196-4e9c-a29a-1bc8578b1fa4",
                 "securityRules": [
                     {
                         "name": "default-allow-rdp",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "TCP",
@@ -191,7 +187,6 @@
                     },
                     {
                         "name": "HTTP",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "TCP",
@@ -208,7 +203,6 @@
                     },
                     {
                         "name": "HTTPS",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "TCP",
@@ -225,7 +219,6 @@
                     },
                     {
                         "name": "HTTP-8080",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
@@ -242,7 +235,6 @@
                     },
                     {
                         "name": "Winrm-5985",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
@@ -259,7 +251,6 @@
                     },
                     {
                         "name": "Winrm-5986",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
@@ -278,7 +269,6 @@
                 "defaultSecurityRules": [
                     {
                         "name": "AllowVnetInBound",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "description": "Allow inbound traffic from all VMs in VNET",
@@ -296,7 +286,6 @@
                     },
                     {
                         "name": "AllowAzureLoadBalancerInBound",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "description": "Allow inbound traffic from azure load balancer",
@@ -314,7 +303,6 @@
                     },
                     {
                         "name": "DenyAllInBound",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "description": "Deny all inbound traffic",
@@ -332,7 +320,6 @@
                     },
                     {
                         "name": "AllowVnetOutBound",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "description": "Allow outbound traffic from all VMs to all VMs in VNET",
@@ -350,7 +337,6 @@
                     },
                     {
                         "name": "AllowInternetOutBound",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "description": "Allow outbound traffic from all VMs to Internet",
@@ -368,7 +354,6 @@
                     },
                     {
                         "name": "DenyAllOutBound",
-                        "etag": "W/\"471f9290-c6db-4a40-85cd-abc5378eead7\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "description": "Deny all outbound traffic",
@@ -396,7 +381,6 @@
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
-                "resourceGuid": "603db5f0-dd4b-461d-94cd-281fa37ee572",
                 "publicIPAddressVersion": "IPv4",
                 "publicIPAllocationMethod": "Dynamic",
                 "idleTimeoutInMinutes": 4,
@@ -414,7 +398,6 @@
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
-                "resourceGuid": "2775ed8a-057b-4f43-a09b-70a8bc84ba36",
                 "addressSpace": {
                     "addressPrefixes": [
                         "10.1.0.0/16"
