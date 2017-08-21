@@ -88,6 +88,30 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkInterfaces', variables('nic_name'))]",
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storage_name'))]"
+            ],
+            "resources": [
+                {
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "name": "[concat(parameters('serverName'),'/WinRMCustomScriptExtension')]",
+                    "apiVersion": "2017-03-30",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Compute/virtualMachines/', parameters('serverName'))]"
+                    ],
+                    "properties": {
+                        "publisher": "Microsoft.Compute",
+                        "type": "CustomScriptExtension",
+                        "typeHandlerVersion": "1.4",
+                        "settings": {
+                            "fileUris": [
+                                "https://raw.githubusercontent.com/angegar/ansible/master/azure-templates/ConfigureWinRM.ps1",
+                                "https://raw.githubusercontent.com/angegar/ansible/master/azure-templates/makecert.exe",
+                                "https://raw.githubusercontent.com/angegar/ansible/master/azure-templates/winrmconf.cmd"
+                            ],
+                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ConfigureWinRM.ps1 ',variables('fqdn'))]"
+                        }
+                    }
+                }
             ]
         },
         {
