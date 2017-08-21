@@ -11,11 +11,11 @@
         "password": {
             "type": "string"
         },
-        "location" : {
-            "type" :"string"
+        "location": {
+            "type": "string"
         },
         "dataDiskSize": {
-            "type" : "int"
+            "type": "int"
         }
     },
     "variables": {
@@ -26,7 +26,8 @@
         "public_ip_name": "[concat('public_ip_',parameters('serverName'))]",
         "vnet_name": "[concat('vnet_',parameters('serverName'))]",
         "subnet_name": "[concat('subnet_',parameters('serverName'))]",
-        "storage_name": "[concat('storageaccount',parameters('serverName'))]"
+        "storage_name": "[concat('storageaccount',parameters('serverName'))]",
+        "fqdn": "[concat(parameters('serverName'),'.cloudapp.azure.com')]"
     },
     "resources": [
         {
@@ -47,16 +48,16 @@
                         "version": "latest"
                     },
                     "osDisk": {
-                        "name":"[variables('os_disk_name')]",
+                        "name": "[variables('os_disk_name')]",
                         "osType": "Windows",
                         "createOption": "FromImage"
                     },
                     "dataDisks": [
-                        {          
-                            "name":"[variables('data_disk_name')]",           
+                        {
+                            "name": "[variables('data_disk_name')]",
                             "createOption": "Empty",
-                            "lun" : 0,
-                            "diskSizeGB":"[parameters('dataDiskSize')]"
+                            "lun": 0,
+                            "diskSizeGB": "[parameters('dataDiskSize')]"
                         }
                     ]
                 },
@@ -376,6 +377,9 @@
                 "publicIPAllocationMethod": "Dynamic",
                 "idleTimeoutInMinutes": 4
             },
+            "dnsSettings": {
+                "fqdn": "[variables('afdn')]"
+            },
             "dependsOn": []
         },
         {
@@ -423,6 +427,28 @@
             "scale": null,
             "properties": {},
             "dependsOn": []
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(variables('serverName'),'/WinRMCustomScriptExtension')]",
+            "apiVersion": "[variables('apiVersion')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[concat('Microsoft.Compute/virtualMachines/', variables('serverName'))]"
+            ],
+            "properties": {
+                "publisher": "Microsoft.Compute",
+                "type": "CustomScriptExtension",
+                "typeHandlerVersion": "1.4",
+                "settings": {
+                    "fileUris": [
+                        "https://raw.githubusercontent.com/angegar/ansible/master/azure-templates/ConfigureWinRM.ps1",
+                        "https://raw.githubusercontent.com/angegar/ansible/master/azure-templates/makecert.exe",
+                        "https://raw.githubusercontent.com/angegar/ansible/master/azure-templates/winrmconf.cmd"
+                    ],
+                    "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ConfigureWinRM.ps1 ',variables('fqdn'))]"
+                }
+            }
         }
     ]
 }
