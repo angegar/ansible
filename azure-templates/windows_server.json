@@ -377,7 +377,7 @@
                 "publicIPAllocationMethod": "Dynamic",
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
-                    "fqdn": "[variables('afdn')]"
+                    "fqdn": "[variables('fqdn')]"
                 }
             },
             "dependsOn": []
