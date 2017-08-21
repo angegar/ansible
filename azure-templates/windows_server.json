@@ -27,7 +27,7 @@
         "vnet_name": "[concat('vnet_',parameters('serverName'))]",
         "subnet_name": "[concat('subnet_',parameters('serverName'))]",
         "storage_name": "[concat('storageaccount',parameters('serverName'))]",
-        "fqdn": "['*','.',resourceGroup().location,'.cloudapp.azure.com')]"
+        "fqdn": "['*',resourceGroup().location,'.cloudapp.azure.com')]"
     },
     "resources": [
         {
