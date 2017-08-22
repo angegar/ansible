@@ -1,4 +1,4 @@
-$hostName= "sn-infra.westeurope.cloudapp.azure.com" # example: "myvm.westus.cloudapp.azure.com"
+$hostName= "jenkinswesteurope.westeurope.cloudapp.azure.com" # example: "myvm.westus.cloudapp.azure.com"
 $winrmPort = '5986'
 
 # Get the credentials of the machine
