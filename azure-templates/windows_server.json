@@ -386,7 +386,7 @@
                 "publicIPAllocationMethod": "Dynamic",
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
-                    "domainNameLabel": "[concat(parameters('serverName'),resourcegroup().location]"
+                    "domainNameLabel": "[concat(parameters('serverName'),resourcegroup().location)]"
                 }
             },
             "dependsOn": []
