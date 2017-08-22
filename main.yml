@@ -1,2 +1,2 @@
-- include: azure.yml
+- include: azure2.yml
 - include: configure.yml

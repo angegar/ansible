@@ -1,5 +1,4 @@
 - hosts: jenkins
-  port: 5986
   connection: winrm
   roles:
    - jenkins
