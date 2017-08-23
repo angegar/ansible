@@ -1,3 +1,2 @@
----
-jenkins_init_file: {{ jenkins_home }}\Jenkins\jenkins.xml
+#jenkins_init_file: "{{ jenkins_home }}\Jenkins\jenkins.xml"
 jenkins_http_port_param: --httpPort

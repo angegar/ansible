@@ -1,4 +1,5 @@
-[ansible]
+[windows_group:children]
+jenkins_group
 
 [sn-infra]
 jenkins
@@ -6,5 +7,5 @@ jenkins
 [azure_infra:children]
 sn-infra
 
-[windows]
-jenkins
+[jenkins_group]
+

@@ -1,7 +1,7 @@
 ---
 # Variable setup.
 - name: Include variables
-  include_vars: "Windows.yml"
+  include_vars: Windows.yml
 
 # Setup/install tasks.
 - include: install-packages.yml

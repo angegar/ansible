@@ -28,4 +28,10 @@
           value: "{{ location }}"
         dataDiskSize:
           value: 200
-#      parameters_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.parameters.json'
+     register: "server"
+
+   - name: Register the VM in the Windows group
+     add_host:
+         hostname: "{{ item['ips'][0].public_ip }}"
+         groupname: "jenkins_group"
+     with_items: "{{ server.deployment.instances }}"
