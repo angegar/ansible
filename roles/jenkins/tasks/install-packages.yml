@@ -14,3 +14,26 @@
      name: jenkins
      state: present
   register: jenkins_install_package_win
+
+- name: Ensure Windows SDK 8.1 is installed.
+  win_chocolatey:
+     name: windows-sdk-8.1
+     state: present
+
+- name: Ensure Git is installed.
+  win_chocolatey:
+     name: git
+     state: present
+
+- name: Ensure Psake is installed.
+  win_chocolatey:
+     name: psake
+     state: present
+
+- name: Ensure Python is installed.
+  win_chocolatey:
+     name: python
+     state: present
+
+- name: Ensure Jenkins Job Builder is installed
+  win_command: pip install jenkins-job-builder
