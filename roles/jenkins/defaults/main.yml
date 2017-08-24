@@ -8,7 +8,7 @@ jenkins_web_proxy: ""
 jenkins_web_proxy_port: ""
 #jenkins_jar_location: $env:TEMP\jenkins-cli.jar
 jenkins_jar_location: "c:\\Windows\\temp\\jenkins-cli.jar"
-jenkins_plugins: []
+jenkins_plugins: [github-oauth,ghprb,next-build-number,nunit,xunit,powershell,embeddable-build-status,credentials-binding]
 jenkins_url_prefix: ""
 jenkins_java_options: "-Djenkins.install.runSetupWizard=false"
 jenkins_jnlp_port: 5001
