@@ -6,7 +6,7 @@ jenkins_hostname: localhost
 jenkins_http_port: 8080
 jenkins_web_proxy: ""
 jenkins_web_proxy_port: ""
-jenkins_jar_location: $env:TEMP\jgenkins-cli.jar
+jenkins_jar_location: "$env:TEMP\jenkins-cli.jar"
 jenkins_plugins: []
 jenkins_url_prefix: ""
 jenkins_java_options: "-Djenkins.install.runSetupWizard=false"
