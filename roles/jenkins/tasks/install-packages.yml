@@ -35,5 +35,10 @@
      name: python
      state: present
 
+- name: Ensure Pip is installed.
+  win_chocolatey:
+     name: pip
+     state: present
+
 - name: Ensure Jenkins Job Builder is installed
   win_command: pip install jenkins-job-builder
