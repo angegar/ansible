@@ -1,26 +1,20 @@
 - hosts: jenkins_group
   vars:
-   git_local_dest: "c:\git"
-   git_repo: https://github.csc.com/yrebibane/sn-itsm-autotest.git
-   git_login: laurent.gil@hpe.com
+   git_local_dest: c:/git
+   git_repo: github.csc.com/yrebibane/sn-itsm-autotest.git
+   git_login: lgil3
    git_password: f7c18f498de30fe67473081e3d9a995e590e3b97
+
 
   roles:
    - jenkins
   
   tasks:
    - name: Ensure the git folder is present
-     win_shell: mkdir c:/git
+     win_file: 
+      path: "{{ git_local_dest }}"
+      state: directory
 
-   - name: Ensure the git repo of the first jjb job is present
-     git:
-      repo: "{{ git_repo }}"
-      dest: "{{ git_local_dest }}"
-      clone: yes
-      update: yes
-
-    # Jenkins Job Builder is installer as per the Jenkins Job
-#   - name: Ensure the first jenkins job is created
-  
-
+   - name: Test
+     win_command: git clone https://{{ git_login }}:{{ git_password }}@{{ git_repo }} {{ git_local_dest }}
 
