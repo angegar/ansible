@@ -1,20 +1,29 @@
 - hosts: jenkins_group
   vars:
-   git_local_dest: c:/git
-   git_repo: github.csc.com/yrebibane/sn-itsm-autotest.git
+   git_local_dest: c:/git/sn-itsm-qa-infra
+   git_repo: github.csc.com/yrebibane/sn-itsm-qa-infra.git
    git_login: lgil3
    git_password: f7c18f498de30fe67473081e3d9a995e590e3b97
+   jjb_config_path: c:/windows/temp
+   jenkins_port: 8080
 
 
   roles:
    - jenkins
   
   tasks:
-   - name: Ensure the git folder is present
-     win_file: 
-      path: "{{ git_local_dest }}"
-      state: directory
+   - name: Ensure the git folder does not already exist 
+     win_shell: rm -r {{ git_local_dest }} -Force
 
-   - name: Test
+
+   - name: Ensure the git repository is present
      win_command: git clone https://{{ git_login }}:{{ git_password }}@{{ git_repo }} {{ git_local_dest }}
+
+   - name: Ensure the Jenkins Job Builder configuration is present
+     template:
+      src: jjb
+      dest: "{{ jjb_config_path }}"
+
+   - name: Ensure first jjb job is present
+     win_command: jenkins-jobs --conf {{ jjb_config_path }}/jjb --user admin --password admin123 update {{ git_local_dest }}/jenkins/jobs/sn-bootstrap.yml
 
