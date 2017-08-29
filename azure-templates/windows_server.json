@@ -143,7 +143,7 @@
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('public_ip_name'))]"
                             },
                             "subnet": {
-                                "name": "[variables('subnet_name')]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnet_name'), variables('subnet_name'))]"
                             },
                             "primary": true,
                             "privateIPAddressVersion": "IPv4"
