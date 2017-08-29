@@ -157,7 +157,7 @@
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": false,
                 "networkSecurityGroup": {
-                    "name": "[variables('network_security_group')]"
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('network_security_group')]"
                 },
                 "primary": true,
                 "virtualMachine": {
