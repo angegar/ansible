@@ -16,6 +16,15 @@
         },
         "dataDiskSize": {
             "type": "int"
+        },
+        "publisher" :{
+            "type": "string"
+        },
+        "offer": {
+            "type": "string"
+        },
+        "sku": {
+            "type" : "string"
         }
     },
     "variables": {
@@ -43,9 +52,9 @@
                 },
                 "storageProfile": {
                     "imageReference": {
-                        "publisher": "MicrosoftWindowsServer",
-                        "offer": "WindowsServer",
-                        "sku": "2012-R2-Datacenter",
+                        "publisher": "[parameters('publisher']",
+                        "offer": "[parameters('offer')]",
+                        "sku": "[parameters('sku')]",
                         "version": "latest"
                     },
                     "osDisk": {

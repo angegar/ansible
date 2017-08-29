@@ -28,6 +28,12 @@
           value: "{{ location }}"
         dataDiskSize:
           value: 200
+        publisher:
+          value: "{{ publisher }}"
+        offer:
+          value: "{{ offer }}"
+        sku:
+          value: "{{ sku }}"
      register: "server"
 
    - name: Register the VM in the Windows group

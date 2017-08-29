@@ -1,3 +1,6 @@
 vm_name: docker
 login: docker
 mdp: P@55w0rd2017
+publisher: Canonical
+offer: Ubuntu_Snappy_Core_Docker
+sku: 15.04
