@@ -25,7 +25,13 @@
         },
         "sku": {
             "type": "string"
-        }
+        },
+	"vnet": {
+ 	    "type": "string"
+        },
+	"subnet": {
+	    "type": "string"
+	}
     },
     "variables": {
         "data_disk_name": "[concat('datadisk',parameters('serverName'))]",
@@ -33,8 +39,6 @@
         "nic_name": "[concat('nic_',parameters('serverName'))]",
         "network_security_group": "remoteConnection",
         "public_ip_name": "[concat('public_ip_',parameters('serverName'))]",
-        "vnet_name": "sn-infra-net",
-        "subnet_name": "services",
         "storage_name": "[concat('storageaccount',parameters('serverName'))]",
         "fqdn": "[concat('*.',resourceGroup().location,'.cloudapp.azure.com')]"
                 
@@ -143,7 +147,7 @@
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('public_ip_name'))]"
                             },
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnet_name'), variables('subnet_name'))]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnet'), parameters('subnet'))]"
                             },
                             "primary": true,
                             "privateIPAddressVersion": "IPv4"
