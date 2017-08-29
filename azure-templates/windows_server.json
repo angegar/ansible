@@ -24,7 +24,7 @@
             "type": "string"
         },
         "sku": {
-            "type" : "string"
+            "type": "string"
         }
     },
     "variables": {
