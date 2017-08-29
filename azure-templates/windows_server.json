@@ -17,7 +17,7 @@
         "dataDiskSize": {
             "type": "int"
         },
-        "publisher" :{
+        "publisher": {
             "type": "string"
         },
         "offer": {
@@ -52,7 +52,7 @@
                 },
                 "storageProfile": {
                     "imageReference": {
-                        "publisher": "[parameters('publisher']",
+                        "publisher": "[parameters('publisher')]",
                         "offer": "[parameters('offer')]",
                         "sku": "[parameters('sku')]",
                         "version": "latest"
