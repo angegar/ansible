@@ -58,13 +58,13 @@
     dest: "{{ jenkins_home }}/init.groovy.d/set_jnlp_port.groovy"
   register: jenkins_jnlp_port_config
   when: (jenkins_install_package_win is defined and jenkins_install_package_win.changed)
-#  notify: restart jenkins
+  notify: restart jenkins
 
-- name: Immediately restart Jenkins after all changes.
-  win_service: 
-    name: jenkins 
-    state: restarted
-  register: jenkins_started
+#- name: Immediately restart Jenkins after all changes.
+#  win_service: 
+#    name: jenkins 
+#    state: restarted
+#  register: jenkins_started
 
 - name: Remove Jenkins security init scripts after first startup.
   win_file:

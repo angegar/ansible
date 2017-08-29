@@ -9,3 +9,4 @@
     safe-restart
     --username {{ jenkins_admin_username }}
     --password {{ jenkins_admin_password }}
+  register: jenkins_started

@@ -4,9 +4,10 @@
    git_repo: github.csc.com/yrebibane/sn-itsm-qa-infra.git
    git_login: lgil3
    git_password: f7c18f498de30fe67473081e3d9a995e590e3b97
-   jjb_config_path: c:/windows/temp
+   windows_temp: c:/windows/temp
    jenkins_port: 8080
-
+   jenkins_admin_username: admin
+   jenkins_admin_password: admin123
 
   roles:
    - jenkins
@@ -14,7 +15,7 @@
   tasks:
    - name: Ensure the git folder does not already exist 
      win_shell: rm -r {{ git_local_dest }} -Force
-
+     ignore_errors: True
 
    - name: Ensure the git repository is present
      win_command: git clone https://{{ git_login }}:{{ git_password }}@{{ git_repo }} {{ git_local_dest }}
@@ -22,8 +23,20 @@
    - name: Ensure the Jenkins Job Builder configuration is present
      template:
       src: jjb
-      dest: "{{ jjb_config_path }}"
+      dest: "{{ windows_temp }}"
 
    - name: Ensure first jjb job is present
-     win_command: jenkins-jobs --conf {{ jjb_config_path }}/jjb --user admin --password admin123 update {{ git_local_dest }}/jenkins/jobs/sn-bootstrap.yml
+     win_command: jenkins-jobs --conf {{ windows_temp }}/jjb --user admin --password admin123 update {{ git_local_dest }}/jenkins/jobs/sn-bootstrap.yml
+
+   - name: Ensure the Jenkins credential is present
+     template:
+      src: jenkins-credential.xml
+      dest: "{{ windows_temp }}"
+
+   - name: Ensure the jenkins credentials are set
+     raw: > 
+      cat {{ windows_temp }}/jenkins-credential.xml | java -jar {{ windows_temp }}/jenkins-cli.jar -s http://{{ inventory_hostname }}:{{ jenkins_port }}/
+      create-credentials-by-xml "SystemCredentialsProvider::SystemContextResolver::jenkins" _
+      --username {{ jenkins_admin_username }}
+      --password {{ jenkins_admin_password }}
 
