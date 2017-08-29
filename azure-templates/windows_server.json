@@ -157,7 +157,7 @@
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": false,
                 "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
+                    "name": "[variables('network_security_group')]"
                 },
                 "primary": true,
                 "virtualMachine": {
@@ -165,8 +165,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', variables('public_ip_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('network_security_group'))]"
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('public_ip_name'))]"
             ]
         },
         {
