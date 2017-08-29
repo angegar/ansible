@@ -26,6 +26,9 @@
         "sku": {
             "type": "string"
         },
+	"osType": {
+	     "type": "string"
+	},
 	"vnet": {
  	    "type": "string"
         },
@@ -63,7 +66,7 @@
                     },
                     "osDisk": {
                         "name": "[variables('os_disk_name')]",
-                        "osType": "Windows",
+                        "osType": "[parameters('osType')]",
                         "createOption": "FromImage"
                     },
                     "dataDisks": [
